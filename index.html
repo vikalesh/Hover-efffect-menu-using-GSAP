@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu on hover images - vikalesh</title>
+
+	<style type="text/css">
+		body{
+			margin:0px;
+			padding:0px;
+			background-color:#232323;
+			color:#fff; 
+			width:100%;
+			height:100vh;
+			overflow-x: hidden;     
+		}
+
+		.menu-wrap ul{
+			margin-top:120px;
+			margin-bottom:200px;  
+			margin-left: 205px;
+			list-style: none;
+			position: absolute;
+		}
+		.nav-item{
+			display: block;
+			margin-top:30px;
+			user-select: none; 
+			margin-bottom: 30px;
+		}
+		.nav-link{
+			font-size:90px;
+			text-decoration: none;
+			color:rgba(255,255,255,0.4);
+			text-decoration: none;   
+		}
+		.nav-link span:before{
+			content: attr(data-text);
+			width: 0;
+			color: #fff;
+			overflow: hidden;
+			position: absolute;
+			transition: all 1s ease-in-out;
+		}
+		.nav-link span:hover:before{
+			width:100%; 
+		}
+
+		.menu-img-preview{
+			position: fixed;
+			width:100%;
+			height:100%; 
+			display: flex;
+			justify-content: center; 
+		}
+		.menu-prev-img{
+			overflow: hidden;
+			background: url(https://www.fillmurray.com/640/360) no-repeat 50% 50%;
+			background-size: cover;
+			width:0;
+			height:400px;  
+			position: fixed;
+			top:12%;
+			left:50%; 
+		}
+
+		@media (max-width:25em){
+			.nav-link{
+				font-size:24px; 
+			}
+		} 
+
+	</style>
+
+</head>
+<body>
+
+<div class="menu-wrap">
+	<div class="menu-img-preview">
+		<div class="menu-prev-img"></div>
+	</div>	
+	<ul class="nav-list">
+		<li class="nav-item">
+			<a href="#" class="nav-link nav-link1">
+				<span data-text="Apples">Apples</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link nav-link2">
+				<span data-text="Bananas">Bananas</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link nav-link3">
+				<span data-text="Blueberries">Blueberries</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link nav-link4">
+				<span data-text="Cherries">Cherries</span>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="#" class="nav-link nav-link5">
+				<span data-text="Kiwi">Kiwi</span>
+			</a>
+		</li>
+	</ul>	
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+
+<script >		
+
+$(document).ready(function(){
+	TweenMax.set(".menu-prev-img", { width: 0 });
+	var tl = new TimelineMax();
+
+	$(document)
+			.on('mouseover','.nav-item', function(evt){
+				var tl = new TimelineMax();
+				//t1.to($('.menu-img-preview'),1{width:'600px',ease: Expo.easeInOut});
+				tl.to($(".menu-prev-img"), 1, {
+              		width: "600px",
+              		ease: Expo.easeInOut
+            		});
+			})
+			.on('mouseout','.nav-item',function(evt){
+				var tl = new TimelineMax();
+				tl.to($(".menu-prev-img"), 1, {
+              		width: 0,
+              		ease: Expo.easeInOut
+            	});
+			})
+
+});
+
+ 	$(".nav-link1").hover(function() {
+        $(".menu-prev-img").css({ "background-image": "url(https://www.fillmurray.com/600/400)" });
+    });
+ 	$(".nav-link2").hover(function() {
+        $(".menu-prev-img").css({ "background-image": "url(https://www.fillmurray.com/640/360)" });
+    });
+ 	$(".nav-link3").hover(function() {
+        $(".menu-prev-img").css({ "background-image": "url(https://www.fillmurray.com/600/320)" });
+    });
+ 	$(".nav-link4").hover(function() {
+        $(".menu-prev-img").css({ "background-image": "url(https://www.fillmurray.com/620/340)" });
+    });
+ 	$(".nav-link5").hover(function() {
+        $(".menu-prev-img").css({ "background-image": "url(https://www.fillmurray.com/640/360)" });
+    });
+
+</script>
+
+
+</body>
+</html>
